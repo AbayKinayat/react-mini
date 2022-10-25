@@ -114,33 +114,42 @@ ul {
 
 .app-task {
   display: flex;
+  justify-content: space-between;
   border: 1px solid #d4d4d4;
   padding: 10px;
   cursor: pointer;
+  transition: .3s;
+  height: 47px;
+
   margin-bottom: 10px;
 }
 
 .app-task__content {
   display: flex;
+  flex: 0.5;
 }
-
 
 .app-task__order {
   margin-right: 10px;
 }
 
-.app-task__text {}
+.app-task__text {
+  flex: 1;
+  border: none;
+  outline: none !important;
+}
 
 .app-task__checkbox {}
 
 .app-task.completed {
-  background-color: green;
+  border: 1px solid rgb(32, 167, 95);
+  border-left: 3px solid rgb(32, 167, 95);
   color: #ffffff;
 }
 
 .app-task.completed .app-task__text,
 .app-task.completed .app-task__order {
-  color: #ffffff;
+  font-weight: 700;
 }
 
 .app-btn {
@@ -180,4 +189,25 @@ ul {
 .app-input:focus {
   box-shadow: 0 0 0 4px #d4d4d4;
   outline: none;
+}
+
+.app-task__delete {
+  background: rgb(194, 51, 26);
+  box-shadow: 0 0 0 0 rgb(255, 188, 177);
+}
+
+.app-task__delete:hover {
+  background: rgb(194, 86, 67);
+}
+
+.app-task__delete:focus {
+  box-shadow: 0 0 0 4px rgb(255, 188, 177);
+}
+
+.app-task.deleted {
+  border: 1px solid rgb(194, 51, 26);
+  border-left: 4px solid rgb(194, 51, 26);
+  overflow: hidden;
+  height: 0px;
+  padding: 0;
 }

@@ -80,7 +80,9 @@ const UI = (() => {
     )
   }
 
-  const AppTask = ({ task, order, onChange = () => { } }) => {
+  const AppTask = ({ task, order, onChange = () => { }, onDelete = () => {} }) => {
+
+    const [isDelete, setIsDelete] = React.useState(false);
 
     const handleTaskClick = () => {
       onChange({
@@ -89,27 +91,47 @@ const UI = (() => {
       })
     }
 
+    const handleTaskChange = (event) => {
+      onChange({
+        ...task,
+        text: event.target.value
+      })
+    }
+
+    const handleTaskTextClick = (event) => {
+      event.stopPropagation();
+    }
+
+    const handleDeleteClick = () => {
+      setIsDelete(true);
+      setTimeout(onDelete.bind(null, task.id), 300);
+    }
+
     return React.createElement(
       "li",
-      { className: `app-task ${task.completed && "completed"}`, onClick: handleTaskClick },
+      { className: `app-task ${task.completed && "completed"} ${isDelete && "deleted"}`, onClick: handleTaskClick },
       React.createElement(
         "div",
-        { className: "app-task__content" },
+        { className: "app-task__content", },
         React.createElement(
           "span",
           { className: "app-task__order" },
           order + "."
         ),
         React.createElement(
-          AppTypography,
-          { variant: 'body1', className: "app-task__text" },
-          task.text
+          "input",
+          { type: "text", className: "app-task__text", value: task.text, onChange: handleTaskChange, onClick: handleTaskTextClick }
         ),
+      ),
+      React.createElement(
+        UI.AppButton,
+        { className: 'app-task__delete', onClick: handleDeleteClick },
+        "Удалить"
       )
     )
   }
 
-  const AppTaskList = ({ tasks, onChange = () => { } }) => {
+  const AppTaskList = ({ tasks, onChange = () => { }, onDelete = () => {} }) => {
     return React.createElement(
       "ul",
       { className: 'app-task-list' },
@@ -120,7 +142,8 @@ const UI = (() => {
             key: task.id,
             task,
             order: index + 1,
-            onChange: onChange
+            onChange,
+            onDelete
           }
         )
       ))

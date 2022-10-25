@@ -88,7 +88,11 @@ const MainContainer = () => {
     ),
     React.createElement(
       UI.AppTaskList,
-      { tasks, onChange: editTask }
+      {
+        tasks,
+        onChange: editTask,
+        onDelete: deleteTask
+      }
     )
   )
 }
