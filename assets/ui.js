@@ -71,12 +71,83 @@ const UI = (() => {
   }
 
   const AppTypography = (props) => {
-    const { children, variant = "h1", ...otherProps } = props;
+    const { children, variant = "h1", className, ...otherProps } = props;
 
     return React.createElement(
-      APP_TYPOGRAHY_VARIANTS[variant],
-      { ...otherProps },
+      APP_TYPOGRAHY_VARIANTS[variant].tag,
+      { className: `${APP_TYPOGRAHY_VARIANTS[variant].className} ${className}`, ...otherProps },
       children
+    )
+  }
+
+  const AppTask = ({ task, order, onChange = () => { } }) => {
+
+    const handleTaskClick = () => {
+      onChange({
+        ...task,
+        completed: !task.completed
+      })
+    }
+
+    return React.createElement(
+      "li",
+      { className: `app-task ${task.completed && "completed"}`, onClick: handleTaskClick },
+      React.createElement(
+        "div",
+        { className: "app-task__content" },
+        React.createElement(
+          "span",
+          { className: "app-task__order" },
+          order + "."
+        ),
+        React.createElement(
+          AppTypography,
+          { variant: 'body1', className: "app-task__text" },
+          task.text
+        ),
+      )
+    )
+  }
+
+  const AppTaskList = ({ tasks, onChange = () => { } }) => {
+    return React.createElement(
+      "ul",
+      { className: 'app-task-list' },
+      tasks.map((task, index) => (
+        React.createElement(
+          AppTask,
+          {
+            key: task.id,
+            task,
+            order: index + 1,
+            onChange: onChange
+          }
+        )
+      ))
+    )
+  }
+
+  const AppInput = (props) => {
+    const { value, onChange = () => { }, className = "", ...otherProps } = props;
+
+    return React.createElement(
+      "input",
+      {
+        className: `app-input ${className}`,
+        type: "text",
+        value,
+        onChange,
+        ...otherProps,
+      }
+    )
+  }
+
+  const AppButton = (props) => {
+    const { className, ...otherProps } = props;
+    return React.createElement(
+      "button",
+      { className: `app-btn ${className}`, ...otherProps },
+      props.children
     )
   }
 
@@ -84,6 +155,10 @@ const UI = (() => {
     AppLinkItem,
     AppLinkList,
     Logo,
-    AppTypography
+    AppTypography,
+    AppTask,
+    AppTaskList,
+    AppButton,
+    AppInput
   }
 })()

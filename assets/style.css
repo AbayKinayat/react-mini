@@ -4,6 +4,7 @@
   -webkit-box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: #444444;
 }
 
 :root {
@@ -53,6 +54,130 @@
   display: flex;
 }
 
+.app-main-container {
+  max-width: 1200px;
+  width: 100%;
+
+  margin: 0 auto;
+  border: 2px solid #f4f4f4;
+  padding: 20px;
+}
+
 ul {
   list-style: none;
+}
+
+.app-typography-h1 {
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.app-typography-h2 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.app-typography-h3 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.app-typography-h4 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.app-typography-h5 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.app-typography-h6 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.app-typography-body1 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.app-typography-body2 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.app-typography-small {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.app-task {
+  display: flex;
+  border: 1px solid #d4d4d4;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.app-task__content {
+  display: flex;
+}
+
+
+.app-task__order {
+  margin-right: 10px;
+}
+
+.app-task__text {}
+
+.app-task__checkbox {}
+
+.app-task.completed {
+  background-color: green;
+  color: #ffffff;
+}
+
+.app-task.completed .app-task__text,
+.app-task.completed .app-task__order {
+  color: #ffffff;
+}
+
+.app-btn {
+  color: #ffffff;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .5s;
+
+  background-color: #444444;
+  box-shadow: 0 0 0 0 #d4d4d4;
+  border: none;
+  padding: 5px 10px;
+}
+
+.app-btn:hover {
+  background-color: #595959;
+}
+
+.app-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #d4d4d4;
+}
+
+.app-task-create-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.app-input {
+  border: 1px solid #d4d4d4;
+  box-shadow: 0 0 0 0 #d4d4d4;
+  transition: .5s;
+  padding: 10px;
+}
+
+.app-input:focus {
+  box-shadow: 0 0 0 4px #d4d4d4;
+  outline: none;
 }

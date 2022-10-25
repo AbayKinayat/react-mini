@@ -17,3 +17,22 @@ const headerNavList = [
 ]
 if (Object.freeze)
   Object.freeze(headerNavList);
+
+function getTasksFromLocalStorage() {
+  try {
+    const taskLocalStorage = localStorage.getItem("tasks");
+    const tasks = JSON.parse(taskLocalStorage);
+    if (!Array.isArray(tasks)) {
+      return []
+    }
+
+    return taskLocalStorage;
+  } catch (e) {
+    console.log(e.message);
+    return [];
+  }
+}
+
+const globalTasks = getTasksFromLocalStorage();
+Object.freeze(globalTasks);
+
