@@ -11,12 +11,14 @@ const Header = () => {
   );
 }
 
-const CreateTaskInput = (props) => {``
+const CreateTaskInput = (props) => {
+  ``
   const [task, setTask] = React.useState("");
   const { onCreate } = props;
 
   const handleCreateClick = () => {
-    onCreate({ text: task, completed: false });
+    if (task)
+      onCreate({ text: task, completed: false });
     resetTask();
   }
 
